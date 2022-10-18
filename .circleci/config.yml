@@ -19,11 +19,11 @@ jobs:
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
       - checkout
       - run:
-          name: Build images of services declared in docker-compose.yml
-          command: docker-compose build
-      - run:
           name: Install node_modules
           command: npm i
+       - run:
+          name: Build images of services declared in docker-compose.yml
+          command: docker-compose build
       - run:
           name: Install argos cli
           command: npm i fast-glob lodash @argos-ci/cli
