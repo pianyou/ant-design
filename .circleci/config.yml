@@ -19,7 +19,7 @@ jobs:
       - run:
           name: Build dist file
           command: yarn dist
-       - run:
+      - run:
           name: Run image screenshot tests
           command: yarn test-image:docker
       - run:
