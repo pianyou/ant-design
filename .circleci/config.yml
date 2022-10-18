@@ -7,22 +7,24 @@ version: 2.1
 jobs:
   test-argos-ci:
     docker:
-      - image: circleci/node:lts
+      - image: circleci/node:16-browsers
     steps:
       - checkout
-      - setup_remote_docker
       - run:
           name: Install node_modules
-          command: npm i
+          command: yarn
       - run:
           name: Install argos cli
-          command: npm i fast-glob lodash @argos-ci/cli
+          command: yarn add fast-glob lodash @argos-ci/cli
       - run:
+          name: Build dist file
+          command: yarn dist
+       - run:
           name: Run image screenshot tests
-          command: npm run test-image
+          command: yarn test-image:docker
       - run:
           name: Upload screenshots to Argos CI
-          command: npm run argos
+          command: yarn argos
 
 
 # Invoke jobs via workflows
