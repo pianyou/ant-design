@@ -17,10 +17,10 @@ jobs:
             curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o ~/docker-compose
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - checkout
       - run:
           name: Build images of services declared in docker-compose.yml
           command: docker-compose build
-      - checkout
       - run:
           name: Install node_modules
           command: npm i
